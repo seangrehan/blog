@@ -1,20 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$container = require __DIR__ . '/../app/bootstrap.php';
 
-use BusinessLogic\Repository\Repository;
-use BusinessLogic\Ads\AdsInjector;
-use BusinessLogic\Storage;
-use BusinessLogic\Ads\Widgets\WidgetFactory;
 use BusinessLogic\BusinessLogic;
 
-$storage = new Storage();
-$widgetFactory = new WidgetFactory();
-
-$repository = new Repository($storage);
-$adsInjector = new AdsInjector($widgetFactory);
-
-$app = new BusinessLogic($repository, $adsInjector);
+$app = $container->get(BusinessLogic::class);
 
 $response = $app->start(1);
 
