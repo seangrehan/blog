@@ -1,0 +1,23 @@
+{
+    "name": "seangrehan/blog",
+    "authors": [
+        {
+            "name": "Sean Grehan",
+        }
+    ],
+    "config": {
+      "optimize-autoloader": true,
+      "classmap-authoritative": true
+    },
+    "autoload": {
+      "classmap": [
+        "tests/"
+      ],
+      "psr-4": {
+        "BusinessLogic\\": "src/"
+      }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
