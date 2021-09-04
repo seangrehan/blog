@@ -4,21 +4,27 @@ declare(strict_types=1);
 
 namespace BusinessLogic\Tests\Feature\Ads;
 
-use PHPUnit\Framework\TestCase;
 use BusinessLogic\Repository\Repository;
 use BusinessLogic\Tests\Database\Mock\ArticleMock;
 use BusinessLogic\Ads\AdsInjector;
 use BusinessLogic\Ads\Widgets\WidgetFactory;
+use BusinessLogic\Ads\AdsTrait;
+use BusinessLogic\Ads\Widgets\PointsTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers BusinessLogic\Ads\AdsInjector
  * @uses BusinessLogic\Repository\Repository
  * @uses BusinessLogic\Tests\Database\Mock\ArticleMock
  * @uses BusinessLogic\Ads\Widgets\WidgetFactory
+ * @uses BusinessLogic\Ads\AdsTrait::get
+ * @uses BusinessLogic\Ads\Widgets\PointsTrait::get
  */
 class AdsInjectorTest extends TestCase
 {
+    private $repository;
     private $adsInjector;
+    private $advert;
+    private $points;
 
     public function setUp(): void
     {
@@ -27,6 +33,9 @@ class AdsInjectorTest extends TestCase
 
         $widgetFactory = new WidgetFactory();
         $this->adsInjector = new AdsInjector($widgetFactory);
+
+        $this->advert = AdsTrait::get();
+        $this->points = PointsTrait::get();
     }
 
     /**
@@ -39,8 +48,8 @@ class AdsInjectorTest extends TestCase
     public function testInject(): void
     {
         $article = $this->repository->getArticle(1);
-        $advert = [['layout' => 'ad']];
-        $points = 3.5;
+        $advert = $this->advert;
+        $points = $this->points;
 
         $article = $this->adsInjector->inject($article, $advert, $points);
 
@@ -57,8 +66,8 @@ class AdsInjectorTest extends TestCase
     public function testInjectArticleNoDuplicateKeys(): void
     {
         $article = $this->repository->getArticle(1);
-        $advert = [['layout' => 'ad']];
-        $points = 3.5;
+        $advert = $this->advert;
+        $points = $this->points;
 
         $article = $this->adsInjector->inject($article, $advert, $points);
 
@@ -79,8 +88,8 @@ class AdsInjectorTest extends TestCase
     public function testInjectArticleWidgetsAllHaveLayoutKey(): void
     {
         $article = $this->repository->getArticle(1);
-        $advert = [['layout' => 'ad']];
-        $points = 3.5;
+        $advert = $this->advert;
+        $points = $this->points;
 
         $article = $this->adsInjector->inject($article, $advert, $points);
 
@@ -99,8 +108,8 @@ class AdsInjectorTest extends TestCase
     public function testInjectNoWidgets(): void
     {
         $article = $this->repository->getArticle(4);
-        $advert = [['layout' => 'ad']];
-        $points = 3.5;
+        $advert = $this->advert;
+        $points = $this->points;
 
         $article = $this->adsInjector->inject($article, $advert, $points);
 

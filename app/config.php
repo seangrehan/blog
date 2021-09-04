@@ -1,14 +1,15 @@
 <?php
 
-use function DI\autowire;
-use function DI\create;
-use function DI\get;
 use BusinessLogic\Ads\AdsInjectorInterface;
 use BusinessLogic\Ads\AdsInjector;
 use BusinessLogic\BusinessLogic;
 use BusinessLogic\Repository\RepositoryInterface;
 use BusinessLogic\Repository\Repository;
 use BusinessLogic\Storage;
+
+use function DI\autowire;
+use function DI\create;
+use function DI\get;
 
 return [
     StorageInterface::class => autowire(Storage::class),

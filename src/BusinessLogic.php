@@ -6,6 +6,8 @@ namespace BusinessLogic;
 
 use BusinessLogic\Repository\RepositoryInterface;
 use BusinessLogic\Ads\AdsInjectorInterface;
+use BusinessLogic\Ads\AdsTrait;
+use BusinessLogic\Ads\Widgets\PointsTrait;
 
 class BusinessLogic
 {
@@ -20,8 +22,8 @@ class BusinessLogic
         $contentType = 'Content-Type: application/json; charset=utf-8';
         $httpCode = 200;
 
-        $advert = [['layout' => 'ad']];
-        $points = 3.5;
+        $advert = AdsTrait::get();
+        $points = PointsTrait::get();
 
         // Go to my database of choice get an article
         try {
