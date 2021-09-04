@@ -39,6 +39,6 @@ class BusinessLogic
 
         $article = json_encode($article);
 
-        return (object) compact('article', 'contentType', 'httpCode');
+        return (object) ['article' => $article, 'contentType' => $contentType, 'httpCode' => $httpCode];
     }
 }
