@@ -85,6 +85,34 @@ class AdsInjectorTest extends TestCase
      * @uses BusinessLogic\Ads\Widgets\Paragraph::getPointsValue
      * @uses BusinessLogic\Ads\Widgets\RelatedArticles::getPointsValue
      */
+    public function testInjectArticleHasCorrectNumberOfAds(): void
+    {
+        $article = $this->repository->getArticle(1);
+        $advert = $this->advert;
+        $points = 2;
+
+        $article = $this->adsInjector->inject($article, $advert, $points);
+
+        $totalPoints = $this->adsInjector->totalPoints;
+        $numberOfExpectedAds = floor($totalPoints / $points);
+
+        $adsCount = 0;
+        foreach ($article['widgets'] as $widget) {
+            if ($widget['layout'] === 'ad') {
+                ++$adsCount;
+            }
+        }
+
+        $this->assertEquals($numberOfExpectedAds, $adsCount);
+    }
+
+    /**
+     * @uses BusinessLogic\Repository\Repository::getArticle
+     * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
+     * @uses BusinessLogic\Ads\Widgets\Embed::getPointsValue
+     * @uses BusinessLogic\Ads\Widgets\Paragraph::getPointsValue
+     * @uses BusinessLogic\Ads\Widgets\RelatedArticles::getPointsValue
+     */
     public function testInjectArticleWidgetsAllHaveLayoutKey(): void
     {
         $article = $this->repository->getArticle(1);
