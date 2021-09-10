@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace BusinessLogic\Tests\Feature\Ads;
 
-use BusinessLogic\Repository\Repository;
-use BusinessLogic\Tests\Database\Mock\ArticleMock;
 use BusinessLogic\Ads\AdsInjector;
-use BusinessLogic\Ads\Widgets\WidgetFactory;
 use BusinessLogic\Ads\AdsTrait;
 use BusinessLogic\Ads\Widgets\PointsTrait;
+use BusinessLogic\Ads\Widgets\WidgetFactory;
+use BusinessLogic\Repository\Repository;
+use BusinessLogic\Tests\Database\Mock\ArticleMock;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @uses BusinessLogic\Repository\Repository
- * @uses BusinessLogic\Tests\Database\Mock\ArticleMock
- * @uses BusinessLogic\Ads\Widgets\WidgetFactory
+ * @uses BusinessLogic\Repository\Repository::__construct
+ * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::__construct
+ * @uses BusinessLogic\Ads\Widgets\WidgetFactory::__contruct
+ * @uses BusinessLogic\Ads\AdsInjector::__contruct
  * @uses BusinessLogic\Ads\AdsTrait::get
  * @uses BusinessLogic\Ads\Widgets\PointsTrait::get
  */
@@ -39,6 +40,7 @@ class AdsInjectorTest extends TestCase
     }
 
     /**
+     * @covers BusinessLogic\Ads\AdsInjector::inject
      * @uses BusinessLogic\Repository\Repository::getArticle
      * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
      * @uses BusinessLogic\Ads\Widgets\Embed::getPointsValue
@@ -57,6 +59,7 @@ class AdsInjectorTest extends TestCase
     }
 
     /**
+     * @covers BusinessLogic\Ads\AdsInjector::inject
      * @uses BusinessLogic\Repository\Repository::getArticle
      * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
      * @uses BusinessLogic\Ads\Widgets\Embed::getPointsValue
@@ -79,6 +82,7 @@ class AdsInjectorTest extends TestCase
     }
 
     /**
+     * @covers BusinessLogic\Ads\AdsInjector::inject
      * @uses BusinessLogic\Repository\Repository::getArticle
      * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
      * @uses BusinessLogic\Ads\Widgets\Embed::getPointsValue
@@ -107,6 +111,7 @@ class AdsInjectorTest extends TestCase
     }
 
     /**
+     * @covers BusinessLogic\Ads\AdsInjector::inject
      * @uses BusinessLogic\Repository\Repository::getArticle
      * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
      * @uses BusinessLogic\Ads\Widgets\Embed::getPointsValue
@@ -127,6 +132,7 @@ class AdsInjectorTest extends TestCase
     }
 
     /**
+     * @covers BusinessLogic\Ads\AdsInjector::inject
      * @uses BusinessLogic\Repository\Repository::getArticle
      * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
      * @uses BusinessLogic\Ads\Widgets\Embed::getPointsValue

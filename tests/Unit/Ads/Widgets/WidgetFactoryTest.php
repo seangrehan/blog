@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use BusinessLogic\Ads\Widgets\WidgetFactory;
 
 /**
- * @covers BusinessLogic\Ads\Widgets\WidgetFactory
+ * @uses BusinessLogic\Ads\Widgets\WidgetFactory::__construct
  */
 class WidgetFactoryTest extends TestCase
 {
@@ -19,10 +19,33 @@ class WidgetFactoryTest extends TestCase
         $this->widgetFactory = new WidgetFactory();
     }
 
+    /**
+    * @covers BusinessLogic\Ads\Widgets\WidgetFactory::create
+    */
     public function testCreateEmbedClass()
     {
         $class = $this->widgetFactory->create('embed');
 
         $this->assertInstanceOf('BusinessLogic\Ads\Widgets\Embed', $class);
+    }
+
+    /**
+    * @covers BusinessLogic\Ads\Widgets\WidgetFactory::create
+    */
+    public function testCreateParagraphClass()
+    {
+        $class = $this->widgetFactory->create('paragraph');
+
+        $this->assertInstanceOf('BusinessLogic\Ads\Widgets\Paragraph', $class);
+    }
+
+    /**
+    * @covers BusinessLogic\Ads\Widgets\WidgetFactory::create
+    */
+    public function testCreateRelatedArticlesClass()
+    {
+        $class = $this->widgetFactory->create('related_articles');
+
+        $this->assertInstanceOf('BusinessLogic\Ads\Widgets\RelatedArticles', $class);
     }
 }

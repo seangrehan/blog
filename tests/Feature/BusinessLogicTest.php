@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace BusinessLogic\Tests\Feature\Ads;
 
-use PHPUnit\Framework\TestCase;
-use BusinessLogic\Repository\Repository;
-use BusinessLogic\Tests\Database\Mock\ArticleMock;
 use BusinessLogic\Ads\AdsInjector;
 use BusinessLogic\Ads\Widgets\WidgetFactory;
+use BusinessLogic\Repository\Repository;
+use BusinessLogic\Tests\Database\Mock\ArticleMock;
 use BusinessLogic\BusinessLogic;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers BusinessLogic\BusinessLogic
+ * @uses BusinessLogic\Repository\Repository::__construct
+ * @uses BusinessLogic\Ads\AdsInjector::__construct
  */
 class BusinessLogicTest extends TestCase
 {
@@ -30,8 +31,7 @@ class BusinessLogicTest extends TestCase
     }
 
     /**
-     * @uses BusinessLogic\Repository\Repository::__construct
-     * @uses BusinessLogic\Ads\AdsInjector::__construct
+     * @covers BusinessLogic\BusinessLogic::start
      * @uses BusinessLogic\Ads\AdsInjector::inject
      * @uses BusinessLogic\Repository\Repository::getArticle
      * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
@@ -47,8 +47,7 @@ class BusinessLogicTest extends TestCase
     }
 
     /**
-     * @uses BusinessLogic\Repository\Repository::__construct
-     * @uses BusinessLogic\Ads\AdsInjector::__construct
+     * @covers BusinessLogic\BusinessLogic::start
      * @uses BusinessLogic\Ads\AdsInjector::inject
      * @uses BusinessLogic\Repository\Repository::getArticle
      * @uses BusinessLogic\Ads\Widgets\WidgetFactory::create
@@ -58,7 +57,7 @@ class BusinessLogicTest extends TestCase
      */
     public function testStartMissingArticle(): void
     {
-        $article = $this->BusinessLogic->start(5);
+        $article = $this->BusinessLogic->start(0);
 
         $this->assertIsObject($article);
     }

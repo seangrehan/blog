@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace BusinessLogic\Tests\Feature;
 
-use PHPUnit\Framework\TestCase;
 use BusinessLogic\Storage;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @covers BusinessLogic\Storage
- */
 class StorageTest extends TestCase
 {
     private $storage;
@@ -19,6 +16,9 @@ class StorageTest extends TestCase
         $this->storage = new Storage();
     }
 
+    /**
+     * @covers BusinessLogic\Storage::get
+    */
     public function testGetExistingFile()
     {
         $file = $this->storage->get('/../tests/storage/articles/healthy.json');
@@ -26,6 +26,9 @@ class StorageTest extends TestCase
         $this->assertIsString($file);
     }
 
+    /**
+     * @covers BusinessLogic\Storage::get
+    */
     public function testGetMissingFile()
     {
         $this->expectException(\Exception::class);

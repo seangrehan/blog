@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace BusinessLogic\Tests\Feature\Repository;
 
-use PHPUnit\Framework\TestCase;
 use BusinessLogic\Repository\Repository;
 use BusinessLogic\Tests\Database\Mock\ArticleMock;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers BusinessLogic\Repository\Repository
- * @uses BusinessLogic\Tests\Database\Mock\ArticleMock
+ * @uses BusinessLogic\Repository\Repository::__construct
+ * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::__construct
  */
 class RepositoryTest extends TestCase
 {
@@ -22,6 +22,10 @@ class RepositoryTest extends TestCase
         $this->repository = new Repository($storage);
     }
 
+    /**
+     * @covers BusinessLogic\Repository\Repository::getArticle
+     * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::get
+     */
     public function testGetArticleHealthyIsArray(): void
     {
         $article = $this->repository->getArticle(1);
@@ -29,6 +33,10 @@ class RepositoryTest extends TestCase
         $this->assertIsArray($article);
     }
 
+    /**
+     * @covers BusinessLogic\Repository\Repository::getArticle
+     * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::get
+     */
     public function testGetArticleHealthyHasWidgetsKey(): void
     {
         $article = $this->repository->getArticle(1);
@@ -36,6 +44,10 @@ class RepositoryTest extends TestCase
         $this->assertArrayHasKey('widgets', $article);
     }
 
+    /**
+     * @covers BusinessLogic\Repository\Repository::getArticle
+     * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::get
+     */
     public function testGetArticleTruncated(): void
     {
         $this->expectException(\Exception::class);
@@ -43,6 +55,10 @@ class RepositoryTest extends TestCase
         $this->repository->getArticle(2);
     }
 
+    /**
+     * @covers BusinessLogic\Repository\Repository::getArticle
+     * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::get
+     */
     public function testGetArticleEmpty(): void
     {
         $this->expectException(\Exception::class);
@@ -50,6 +66,10 @@ class RepositoryTest extends TestCase
         $this->repository->getArticle(3);
     }
 
+    /**
+     * @covers BusinessLogic\Repository\Repository::getArticle
+     * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::get
+     */
     public function testGetArticleNoWidgetsKey(): void
     {
         $article = $this->repository->getArticle(4);
@@ -57,10 +77,14 @@ class RepositoryTest extends TestCase
         $this->assertIsArray($article);
     }
 
+    /**
+     * @covers BusinessLogic\Repository\Repository::getArticle
+     * @uses BusinessLogic\Tests\Database\Mock\ArticleMock::get
+     */
     public function testGetArticleMissing(): void
     {
         $this->expectException(\Exception::class);
 
-        $this->repository->getArticle(5);
+        $this->repository->getArticle(0);
     }
 }

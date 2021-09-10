@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace BusinessLogic\Tests\Unit\Ads\Widgets;
 
-use PHPUnit\Framework\TestCase;
 use BusinessLogic\Ads\Widgets\RelatedArticles;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers BusinessLogic\Ads\Widgets\RelatedArticles
+ * @uses BusinessLogic\Ads\Widgets\RelatedArticles::__construct
  */
 class RelatedArticlesTest extends TestCase
 {
@@ -19,7 +19,10 @@ class RelatedArticlesTest extends TestCase
         $this->relatedArticles = new RelatedArticles();
     }
 
-    public function testGetPointsValue()
+    /**
+    * @covers BusinessLogic\Ads\Widgets\RelatedArticles::getPointsValue
+    */
+    public function testGetPointsValue(): void
     {
         $widget = [
             'layout' => 'related_articles',
