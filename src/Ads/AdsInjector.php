@@ -15,15 +15,15 @@ class AdsInjector implements AdsInjectorInterface
     ) {
     }
 
-    public function inject(array $article, array $advert, float $points): array
+    public function inject(array $article, array $advert, float $pointsResetCounter): array
     {
         if (!isset($article['widgets'])) {
             return $article;
         }
 
-        $adsCounter = 0;
         $pointsCounter = 0;
         $classes = [];
+        $formattedWidgets = [];
 
         foreach ($article['widgets'] as $widget) {
             // Prevent recreating already instanced class
@@ -36,19 +36,18 @@ class AdsInjector implements AdsInjectorInterface
 
             $pointsCounter += $points;
 
-            $this->totalPoints += $points;
+            $formattedWidgets[] = $widget;
 
-            // Use counter instead of array key incase key is not int
-            ++$adsCounter;
+            if ($pointsCounter >= $pointsResetCounter) {
+                $this->totalPoints += $pointsResetCounter;
 
-            if ($points >= $pointsCounter) {
                 // Reset points counter
-                $points = 0;
-
-                // If points are equal or more than 3.5 then add an ad before the next widget
-                array_splice($article['widgets'], $adsCounter, 0, $advert);
+                $pointsCounter = 0;
+                $formattedWidgets[] = $advert;
             }
         }
+
+        $article['widgets'] = $formattedWidgets;
 
         return $article;
     }

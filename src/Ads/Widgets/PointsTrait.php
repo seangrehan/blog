@@ -8,6 +8,6 @@ trait PointsTrait
 {
     public static function get(): float
     {
-        return 3.5;
+        return 2;
     }
 }

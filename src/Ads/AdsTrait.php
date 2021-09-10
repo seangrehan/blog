@@ -8,6 +8,6 @@ trait AdsTrait
 {
     public static function get(): array
     {
-        return [['layout' => 'ad']];
+        return ['layout' => 'ad'];
     }
 }
