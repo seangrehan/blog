@@ -11,7 +11,7 @@ class AdsInjector implements AdsInjectorInterface
     public $totalPoints = 0;
 
     public function __construct(
-        private WidgetFactory $widgetFactory
+        private readonly WidgetFactory $widgetFactory
     ) {
     }
 

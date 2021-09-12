@@ -12,8 +12,8 @@ use BusinessLogic\Ads\Widgets\PointsTrait;
 class BusinessLogic
 {
     public function __construct(
-        private RepositoryInterface $repository,
-        private AdsInjectorInterface $adsInjector
+        private readonly RepositoryInterface $repositoryRepository,
+        private readonly AdsInjectorInterface $adsInjector
     ) {
     }
 
@@ -28,7 +28,7 @@ class BusinessLogic
         // Go to my database of choice get an article
         try {
             // This article should contain some ads widgets in i
-            $article = $this->repository->getArticle($articleId);
+            $article = $this->repositoryRepository->getArticle($articleId);
 
             // Now the fun starts, injecting ads into this article
             $article = $this->adsInjector->inject($article, $advert, $points);

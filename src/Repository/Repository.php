@@ -9,7 +9,7 @@ use BusinessLogic\StorageInterface;
 class Repository implements RepositoryInterface
 {
     public function __construct(
-        private StorageInterface $storage
+        private readonly StorageInterface $storage
     ) {
     }
 
